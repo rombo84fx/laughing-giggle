@@ -8,28 +8,48 @@ namespace Module1
 {
     class Program
     {
+        static string firstName;
+        static string lastName;
+        static DateTime birthdate;
+        static string addressLine1;
+        static string addressLine2;
+        static string city;
+        static string stateProvince;
+        static string zipPostal;
+        static string country;
+
         static void Main(string[] args)
         {
-            string firstName;
-            string lastName;
-            DateTime birthdate;
-            string addressLine1;
-            string addressLine2;
-            string city;
-            string stateProvince;
-            string zipPostal;
-            string country;
+            requestInfo();
+            displayInfo();
+            Console.WriteLine("Press enter to continue...");
+            Console.ReadLine();
+        }
 
-            firstName = "Gerardo";
-            lastName = "Martinez";
-            birthdate = new DateTime(1984, 5, 7);
-            addressLine1 = "Evergureen 123";
-            addressLine2 = "Somewhere";
-            city = "New York";
-            stateProvince = "New York";
-            zipPostal = "134945RE";
-            country = "Mexico";
+        private static void requestInfo()
+        {
+            Console.WriteLine("Enter student first name:");
+            firstName = Console.ReadLine();
+            Console.WriteLine("Enter student last name:");
+            lastName = Console.ReadLine();
+            Console.WriteLine("Enter student birthdate:");
+            birthdate = DateTime.Parse(Console.ReadLine());
+            Console.WriteLine("Enter student address line 1:");
+            addressLine1 = Console.ReadLine();
+            Console.WriteLine("Enter student address line 2:");
+            addressLine2 = Console.ReadLine();
+            Console.WriteLine("Enter student city:");
+            city = Console.ReadLine();
+            Console.WriteLine("Enter student state/province:");
+            stateProvince = Console.ReadLine();
+            Console.WriteLine("Enter student zip/postal:");
+            zipPostal = Console.ReadLine();
+            Console.WriteLine("Enter student country:");
+            country = Console.ReadLine();
+        }
 
+        private static void displayInfo()
+        {
             Console.WriteLine("Student information");
             Console.WriteLine($"First name: {firstName}");
             Console.WriteLine($"Last name: {lastName}");
@@ -40,10 +60,6 @@ namespace Module1
             Console.WriteLine($"State/Province: {stateProvince}");
             Console.WriteLine($"Zip/Postal: {zipPostal}");
             Console.WriteLine($"Country: {country}");
-
-            Console.WriteLine("Press enter to continue...");
-            Console.ReadLine();
-
         }
     }
 }
