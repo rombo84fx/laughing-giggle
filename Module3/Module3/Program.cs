@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Module3
 {
@@ -49,17 +45,31 @@ namespace Module3
 
         static void Main(string[] args)
         {
-            GetStudentInformation();
-            GetTeacherInformation();
-            GetProgramInformation();
-            GetDegreeInformation();
-            GetCourseInformation();
+            try
+            {
+                GetStudentInformation();
+                GetTeacherInformation();
+                GetProgramInformation();
+                GetDegreeInformation();
+                GetCourseInformation();
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            catch(ArgumentNullException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
             PrintStudentDetails();
             PrintTeacherInformation();
             PrintProgramInformation();
             PrintDegreeInformation();
             PrintCourseInformation();
-            ValidateStudentBirthdate();
         }
 
         static void GetStudentInformation()
@@ -177,11 +187,6 @@ namespace Module3
             Console.WriteLine($"Credits: {courseCredits}");
             Console.WriteLine($"Duration: {courseDuration}");
             Console.WriteLine($"Teacher: {courseTeacher}");
-        }
-
-        static void ValidateStudentBirthdate()
-        {
-            throw new NotImplementedException();
         }
     }
 }
