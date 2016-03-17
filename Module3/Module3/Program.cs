@@ -52,24 +52,16 @@ namespace Module3
                 GetProgramInformation();
                 GetDegreeInformation();
                 GetCourseInformation();
+                PrintStudentDetails();
+                PrintTeacherInformation();
+                PrintProgramInformation();
+                PrintDegreeInformation();
+                PrintCourseInformation();
             }
-            catch (FormatException e)
+            catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }
-            catch(ArgumentNullException e)
-            {
-                Console.WriteLine(e.Message);
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-            PrintStudentDetails();
-            PrintTeacherInformation();
-            PrintProgramInformation();
-            PrintDegreeInformation();
-            PrintCourseInformation();
         }
 
         static void GetStudentInformation()
@@ -79,7 +71,7 @@ namespace Module3
             Console.WriteLine("Enter the student's last name:");
             studentLastName = Console.ReadLine();
             Console.WriteLine("Enter the student's birthdate:");
-            studentBirthdate = DateTime.Parse(Console.ReadLine());
+            ValidateBirthdate(out studentBirthdate);
             Console.WriteLine("Enter the student's address line 1:");
             studentAddressLine1 = Console.ReadLine();
             Console.WriteLine("Enter the student's address line 2:");
@@ -112,7 +104,7 @@ namespace Module3
             Console.WriteLine("Enter the teacher's last name:");
             teacherLastName = Console.ReadLine();
             Console.WriteLine("Enter the teacher's birthdate:");
-            teacherBirthdate = DateTime.Parse(Console.ReadLine());
+            ValidateBirthdate(out teacherBirthdate);
             Console.WriteLine("Enter the teacher's address line 1:");
             teacherAddressLine1 = Console.ReadLine();
             Console.WriteLine("Enter the teacher's address line 2:");
@@ -187,6 +179,19 @@ namespace Module3
             Console.WriteLine($"Credits: {courseCredits}");
             Console.WriteLine($"Duration: {courseDuration}");
             Console.WriteLine($"Teacher: {courseTeacher}");
+        }
+
+        static void ValidateBirthdate(out DateTime birthdate)
+        {
+            try
+            {
+                birthdate = DateTime.Parse(Console.ReadLine());
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine(e.Message);
+                throw;
+            }
         }
     }
 }
