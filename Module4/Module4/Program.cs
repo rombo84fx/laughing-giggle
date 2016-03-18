@@ -65,13 +65,23 @@ namespace Module4
                 this.Teacher = Teacher;
             }
         }
-        
+
         static void Main(string[] args)
         {
             Student[] students = new Student[5];
-            students[0] = new Student("John", "Doe", new DateTime(1984, 5, 7));
-            Console.WriteLine("Student Information");
-            Console.WriteLine($"Student: {students[0].FirstName} {students[0].LastName} was born on {students[0].Birthdate.ToShortDateString()}");
+            for (int i = 0; i < students.Length; i++)
+            {
+                Console.WriteLine($"Enter student {i + 1} first name:");
+                students[i].FirstName = Console.ReadLine();
+                Console.WriteLine($"Enter student {i + 1} last name:");
+                students[i].LastName = Console.ReadLine();
+                Console.WriteLine($"Enter student {i + 1} birthdate name:");
+                students[i].Birthdate = DateTime.Parse(Console.ReadLine());
+            }
+            foreach (var student in students)
+            {
+                Console.WriteLine($"Student: {student.FirstName} {student.LastName} was born on {student.Birthdate.ToShortDateString()}"); 
+            }
             Console.ReadKey();
         }
     }
