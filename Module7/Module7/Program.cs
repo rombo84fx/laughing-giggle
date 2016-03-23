@@ -7,7 +7,7 @@ using System.Collections;
 
 namespace Module7
 {
-    abstract class Person
+    abstract class Person : IComparable
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -18,6 +18,15 @@ namespace Module7
             this.FirstName = FirstName;
             this.LastName = LastName;
             this.Birthdate = Birthdate;
+        }
+
+        int IComparable.CompareTo(object obj)
+        {
+            Person other = (Person)obj;
+            string name = $"{this.LastName} {this.FirstName}";
+            string otherName = $"{other.LastName} {other.FirstName}";
+
+            return String.Compare(name, otherName);
         }
     }
 
@@ -132,9 +141,9 @@ namespace Module7
             Random grade = new Random(10);
             for (int i = 0; i < 5; i++)
             {
-                student1.Grades.Push(grade);
-                student2.Grades.Push(grade);
-                student3.Grades.Push(grade);
+                student1.Grades.Push(grade.Next(0, 10));
+                student2.Grades.Push(grade.Next(0, 10));
+                student3.Grades.Push(grade.Next(0, 10));
             }
 
             // Create teachers array initializing one teacher
@@ -158,6 +167,20 @@ namespace Module7
             Console.WriteLine($"The {courses[0].Name} contains {Student.StudentCount()} student(s)");
             Console.WriteLine($"The list of students of {courses[0].Name} course");
             courses[0].ListStudents();
+            Course course1 = courses[0];
+            course1.Students.Sort();
+            foreach (Student student in course1.Students)
+            {
+                Console.WriteLine($"{student.LastName} {student.FirstName}");
+            }
+            foreach (Student s in students)
+            {
+                Console.WriteLine($"{s.FirstName} {s.LastName}'s grades:");
+                foreach (int g in s.Grades)
+                {
+                    Console.WriteLine($"{g}");
+                }
+            }
             Console.ReadKey();
         }
     }
